@@ -61,4 +61,4 @@ load_blacklist()
 
 # Connexion au bot Discord
 
-client.run("NTE2ODc4NTQ3NzA5NzIyNjI1.GUffiW.g36p7jp4bnSUFT75QXuwTmeEO_yu6iWfGfAZC4")
+client.run("token")
