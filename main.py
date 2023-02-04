@@ -1,6 +1,9 @@
 import discord
 import os
 
+intents = discord.Intents.default()
+client = discord.Client(intents=intents)
+
 # Liste des IDs de grades à vérifier
 GRADE_ID = [747710162801786922, 747709432774918186, 541705433069649931, 541705436081160192, 649733488932814863, 823277528759795802]
 
@@ -37,8 +40,9 @@ async def check_grades(guild):
 # Ban automatiquement un utilisateur blacklisté s'il rejoint le serveur
 async def on_member_join(member):
     if member.id in blacklisted_users:
+        await member.send("T ban sale merde")
         await member.ban(reason="Vous êtes sur la liste noire")
-
+        
 # Initialisation de Discord
 client = discord.Client()
 
@@ -57,4 +61,4 @@ load_blacklist()
 
 # Connexion au bot Discord
 
-client.run("TOKEN")
+client.run("NTE2ODc4NTQ3NzA5NzIyNjI1.GUffiW.g36p7jp4bnSUFT75QXuwTmeEO_yu6iWfGfAZC4")
