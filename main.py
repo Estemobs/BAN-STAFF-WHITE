@@ -2,7 +2,7 @@ import discord
 import os
 
 # Liste des IDs de grades à vérifier
-GRADE_ID = [123456789, 987654321, 111111111] 
+GRADE_ID = [747710162801786922, 747709432774918186, 541705433069649931, 541705436081160192, 649733488932814863, 823277528759795802]
 
 # Liste des utilisateurs blacklistés
 blacklisted_users = []
@@ -44,8 +44,8 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-    print("Bot is ready")
-    guild = client.get_guild(1234567890) # Id de la guilde
+    print("Le bot est en ligne")
+    guild = client.get_guild(541703278967128125) # Id de la guilde
     await check_grades(guild)
 
 @client.event
