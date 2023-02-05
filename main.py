@@ -3,17 +3,16 @@ import os
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
-
-# Liste des IDs de grades à vérifier
+# List of grade  to check
 GRADE_ID = [747710162801786922, 747709432774918186, 541705433069649931, 541705436081160192, 649733488932814863, 823277528759795802]
 
-# Liste des utilisateurs blacklistés
+# List of blacklisted users
 blacklisted_users = []
 
-# Chemin vers le fichier txt
+# Path to txt file
 BLACKLIST_FILE = "blacklist.txt"
 
-# Charger la liste des utilisateurs blacklistés à partir du fichier txt
+# Load list of blacklisted users from txt file
 def load_blacklist():
     if not os.path.exists(BLACKLIST_FILE):
         open(BLACKLIST_FILE, "w").close()
@@ -22,13 +21,13 @@ def load_blacklist():
             user_id = int(line.strip())
             blacklisted_users.append(user_id)
 
-# Enregistrer la liste des utilisateurs blacklistés dans le fichier txt
+# Save list of blacklisted users to txt file
 def save_blacklist():
     with open(BLACKLIST_FILE, "w") as file:
         for user_id in blacklisted_users:
             file.write(str(user_id) + "\n")
 
-# Vérifier les grades des utilisateurs tous les jours
+# Check user ranks daily
 async def check_grades(guild):
     for member in guild.members:
         for role in member.roles:
@@ -37,13 +36,13 @@ async def check_grades(guild):
                     blacklisted_users.append(member.id)
                     save_blacklist()
 
-# Ban automatiquement un utilisateur blacklisté s'il rejoint le serveur
+# Automatically ban a blacklisted user if they join the server
 async def on_member_join(member):
     if member.id in blacklisted_users:
         await member.send("T ban sale merde")
         await member.ban(reason="Vous êtes sur la liste noire")
         
-# Initialisation de Discord
+# Discord initialization
 client = discord.Client()
 
 @client.event
@@ -56,9 +55,9 @@ async def on_ready():
 async def on_member_join(member):
     await on_member_join(member)
 
-# Charger la blacklist à partir du fichier txt
+# Load blacklist from txt file
 load_blacklist()
 
-# Connexion au bot Discord
+# Discord bot token
 
 client.run("token")
